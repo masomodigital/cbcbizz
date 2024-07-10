@@ -171,16 +171,16 @@
     </ol>
     <h2 class="earners">Today's Top Earners</h2>
     <table id="earnersTable">
-        <tr>
-            <th>User ID</th>
-            <th>No. Of Sign Ups</th>
-            <th>Earnings (Ksh.)</th>
-        </tr>
-        <tr>
-            <td id="userId">User001</td>
-            <td id="signUps">30</td>
-            <td id="earnings">1500.00</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>No. Of Sign Ups</th>
+                <th>Earnings (Ksh.)</th>
+            </tr>
+        </thead>
+        <tbody id="earnersBody">
+            <!-- Table rows will be generated dynamically -->
+        </tbody>
     </table>
     <h2 class="attention">ATTENTION!</h2>
     <p class="attention-message">
@@ -192,5 +192,38 @@
         <button class="black-button" onclick="window.location.href='https://masomodigital.github.io/startbiz/'">New to CBC Biz? Click HERE to Get Started</button>
         <button class="blue-button" onclick="window.location.href='https://masomodigital.github.io/startbiz/'">Share To Invite Friends</button>
     </div>
+
+    <script>
+        // Function to format earnings with commas and two decimal places
+        function formatEarnings(earnings) {
+            return parseFloat(earnings).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        // Function to generate table rows for earners
+        function generateEarnerRows() {
+            var tbody = document.getElementById('earnersBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            var userId = 'User001'; // You can adjust how user IDs are generated here
+            var signUps = Math.floor(Math.random() * 31) + 20; // Random number of sign ups between 20 and 50
+            var earnings = (signUps * 50).toFixed(2); // Calculate earnings and format to 2 decimal places with commas
+
+            var row = '<tr>' +
+                        '<td>' + userId + '</td>' +
+                        '<td>' + signUps + '</td>' +
+                        '<td>' + formatEarnings(earnings) + '</td>' +
+                      '</tr>';
+
+            tbody.innerHTML = row; // Replace table body with new row
+        }
+
+        // Generate initial rows
+        generateEarnerRows();
+
+        // Update table with new data every 5 seconds
+        setInterval(function() {
+            generateEarnerRows(); // Update with new data
+        }, 5000); // Update every 5 seconds
+    </script>
 </body>
 </html>
