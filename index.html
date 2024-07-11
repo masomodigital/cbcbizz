@@ -12,13 +12,13 @@
         }
 
         h4 {
-            font-size: 1.2em; /* Adjusted font size */
-            margin: 5px auto; /* Reduced margin by 50% */
+            font-size: 1.2em;
+            margin: 5px auto;
         }
 
         a {
             display: block;
-            margin: 5px auto; /* Reduced margin by 50% */
+            margin: 5px auto;
         }
 
         img {
@@ -27,19 +27,19 @@
         }
 
         p {
-            font-size: 0.9em; /* Adjusted font size */
-            margin: 5px auto; /* Reduced margin by 50% */
+            font-size: 0.9em;
+            margin: 5px auto;
         }
 
         canvas {
             display: block;
-            margin: 0 auto; /* Adjusted margin for the canvas */
+            margin: 0 auto;
         }
 
         h1.blinking {
             color: red;
             font-weight: bold;
-            animation: blink 3s infinite; /* Adjusted animation duration to blink slowly */
+            animation: blink 3s infinite;
         }
 
         @keyframes blink {
@@ -152,6 +152,12 @@
         .button-container {
             margin-top: 20px;
         }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -169,6 +175,13 @@
         <li>Receive the App Activation fee from potential users. Login to Sign Up a User and Earn. Pay via Mpesa the sign up fee ON BEHALF of the user by filling the given payment link.</li>
         <li>That's it! The new user is granted access and admin privileges. You earn Ksh.50 instantly!</li>
     </ol>
+    <div class="center">
+        <button class="green-button" onclick="window.location.href='https://cutt.ly/downloadcbc'">Download CBC Digital App</button>
+    </div>
+    <h2 class="steps">Step by step video guide How to Sign Up a New User and Earn</h2>
+    <div class="center">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/GOxtBchcFYk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <h2 class="earners">Today's Top Earners</h2>
     <table id="earnersTable">
         <thead>
@@ -194,19 +207,17 @@
     </div>
 
     <script>
-        // Function to format earnings with commas and two decimal places
         function formatEarnings(earnings) {
             return parseFloat(earnings).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
-        // Function to generate table rows for earners
         function generateEarnerRows() {
             var tbody = document.getElementById('earnersBody');
             tbody.innerHTML = ''; // Clear existing rows
 
-            var userId = 'User001'; // You can adjust how user IDs are generated here
-            var signUps = Math.floor(Math.random() * 31) + 20; // Random number of sign ups between 20 and 50
-            var earnings = (signUps * 50).toFixed(2); // Calculate earnings and format to 2 decimal places with commas
+            var userId = 'User' + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
+            var signUps = Math.floor(Math.random() * 71) + 40; // Random number of sign ups between 40 and 110
+            var earnings = (signUps * 50).toFixed(2);
 
             var row = '<tr>' +
                         '<td>' + userId + '</td>' +
@@ -214,16 +225,14 @@
                         '<td>' + formatEarnings(earnings) + '</td>' +
                       '</tr>';
 
-            tbody.innerHTML = row; // Replace table body with new row
+            tbody.innerHTML = row;
         }
 
-        // Generate initial rows
         generateEarnerRows();
 
-        // Update table with new data every 5 seconds
         setInterval(function() {
-            generateEarnerRows(); // Update with new data
-        }, 5000); // Update every 5 seconds
+            generateEarnerRows();
+        }, 5000);
     </script>
 </body>
 </html>
